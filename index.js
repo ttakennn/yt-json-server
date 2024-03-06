@@ -1,6 +1,7 @@
 import queryString from 'query-string';
 import jsonServer from 'json-server';
 import auth from 'json-server-auth';
+import customRoutes from './routes.json' assert { type: 'json' };
 
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
@@ -56,9 +57,16 @@ server.db = router.db;
 // apply the auth middleware
 server.use(auth);
 
-//@faker-js/faker
+// add custom routes
+const customRewriter = jsonServer.rewriter(customRoutes);
+server.use(customRewriter);
+
+// faker network with random delay
+server.use('/api', (req, res, next) => {
+  setTimeout(next, Math.random() * 1000);
+});
+
 // Use default router
-// -> api/posts
 server.use('/api', router);
 
 // Start server

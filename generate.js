@@ -28,6 +28,7 @@ const randomPersonList = (companyList, numberOfPerson) => {
         firstName: faker.person.firstName(),
         lastName: faker.person.lastName(),
         age: faker.date.birthdate({ min: 18, max: 65, mode: 'age' }),
+        salary_dollar: generateRandomSalary(),
         jobTitle: faker.person.jobTitle(),
         email: faker.internet.email(),
         phone: faker.phone.number(),
@@ -42,6 +43,16 @@ const randomPersonList = (companyList, numberOfPerson) => {
 
   return personList;
 };
+
+function generateRandomSalary() {
+  const minSalary = 100;
+  const maxSalary = 1000;
+
+  // random() -> 0 - 1  => 0.001
+  const randomSalary =
+    Math.floor(Math.random() * (maxSalary - minSalary + 1)) + 100;
+  return randomSalary;
+}
 
 // IIFE
 (() => {
