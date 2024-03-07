@@ -1,5 +1,5 @@
 {
-  "/api/employee-search/:search/:sortField/:order": "/api/persons?q=:search&_sort=:sortField&_order=:order",
-  "/api/employee/salary/:min/:max": "/api/persons?salary_dollar_gte=:min&salary_dollar_lte=:max",
-  "/api/company/:id": "/api/companies/:id?_embed=persons"
+  "/employee-search/:search/:sortField/:order": "/persons?q=:search&_sort=:sortField&_order=:order",
+  "/employee/salary/:min/:max": "/persons?salary_dollar_gte=:min&salary_dollar_lte=:max",
+  "/company/:id": "/companies/:id?_embed=persons"
 }

@@ -51,23 +51,48 @@ router.render = (req, res) => {
   return res.jsonp(res.locals.data);
 };
 
-// bind the router db to server
-server.db = router.db;
+// Auth
+server.db = router.db; // bind the router db to server
 
-// apply the auth middleware
-server.use(auth);
+const rules = auth.rewriter({
+  users: 400,
+  persons: 640,
+});
+
+// apply rules
+server.use(rules, (req, res, next) => {
+  const regex = /^\/\d+\/users$/;
+  const method = req.method;
+  const url = req.url;
+
+  console.log('Method: ', method);
+  console.log('Url: ', url); // -> /400/users
+
+  const pathSegments = url.split(/[\/]+/).filter(Boolean);
+  console.log('Rule: ', pathSegments[0]); // 400, 640, 600
+  console.log('Params: ', pathSegments[1]);
+
+  if (method === 'POST' && regex.test(url)) {
+    return res
+      .status(403)
+      .json({ error: 'You do NOT have permission to action this request!' });
+  }
+
+  next();
+});
+server.use(auth); // apply the auth middleware
 
 // add custom routes
 const customRewriter = jsonServer.rewriter(customRoutes);
 server.use(customRewriter);
 
 // faker network with random delay
-server.use('/api', (req, res, next) => {
+server.use('/', (req, res, next) => {
   setTimeout(next, Math.random() * 1000);
 });
 
 // Use default router
-server.use('/api', router);
+server.use(router);
 
 // Start server
 const PORT = process.env.PORT || 3000;

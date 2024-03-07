@@ -73,9 +73,10 @@
   ],
   "persons": [
     {
+      "userId": 1,
       "id": "3f99605b-573f-4318-b989-c3c5051e4103",
       "companyId": "43b5896d-df37-4595-b366-d842fb5e9353",
-      "firstName": "Hải Sơn",
+      "firstName": "Hải Sơn 1234",
       "lastName": "Lý",
       "age": "1993-05-31T18:46:05.615Z",
       "salary_dollar": 584,
@@ -2873,5 +2874,24 @@
       "avatarUrl": "https://avatars.githubusercontent.com/u/72584767"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "email": "tta@gmail.com",
+      "password": "$2a$10$IvvmUghMd3.UuudMBz/3qu2WGfjzzzqPx1vjq8NsTXhY7g.7nKTWK",
+      "createdAt": 1709827579303,
+      "id": 1
+    },
+    {
+      "email": "tta123@gmail.com",
+      "password": "$2a$10$9LOsE2mpkHKLWrcKATGS5e3EriN8xD1XhekwNvh4JZT/7qFsvpoGK",
+      "createdAt": 1709827651581,
+      "id": 2
+    },
+    {
+      "email": "tta1@gmail.com",
+      "password": "$2a$10$a53Y2pbn1jNyofW7w5.WsemupLSyNp5EG2kWTgs0Czj76X/6ebB86",
+      "createdAt": 1709827858953,
+      "id": 3
+    }
+  ]
 }
